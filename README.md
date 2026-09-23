@@ -566,23 +566,3 @@ UIManager is responsible for updating the information presented to the player, s
 
 The main technical feature is the combination of procedural level generation, real-time gameplay management, physics-based movement, collision detection, dynamic difficulty, and UI/audio systems within a single application.
 
-📌 Project Summary
-Category	Details
-Project Name	Royal Run
-Project Type	3D Endless Runner
-Engine	Unity
-Programming Language	C#
-Rendering	Universal Render Pipeline
-Input System	Unity New Input System
-Environment	Procedurally Generated
-Player System	Physics-Based Movement
-Scoring	Distance/Survival Based
-Currency	Coins
-Health	3 Lives
-Difficulty	Dynamic
-Audio	Background Music + Sound Effects
-Interface	In-Game HUD
-Primary Objective	Survive, collect coins and achieve a high score
-One important point for your faculty
-
-Because you're using an existing public Royal Run project as the base, don't tell the faculty that you personally developed every original component from scratch if they ask about authorship. A safer presentation is to explain the system technically and clearly, and, if required, state that you studied/adapted the project and understand its implementation. That will also make your viva much easier because you can explain what each component actually does rather than memorizing a claim of authorship.
