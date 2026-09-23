@@ -1,568 +1,1076 @@
-👑 Royal Run — 3D Endless Runner Game
-📌 Project Overview
+# 👑 Royal Run
 
-Royal Run is a 3D endless runner game developed using Unity and C#. The player controls a character running continuously through an endlessly generated environment while avoiding obstacles and collecting coins.
+## 3D Endless Runner Game
 
-The main objective of the game is to survive for as long as possible, achieve the highest score, and collect maximum coins. As the player progresses, the game gradually becomes more challenging by increasing the movement speed and continuously generating new sections of the level.
+**Royal Run** is a 3D endless runner game developed using **Unity and C#**. The player continuously runs through a procedurally generated environment, avoids obstacles, collects coins, and tries to survive for as long as possible while the game gradually becomes more challenging.
 
-The project demonstrates important concepts of modern game development such as 3D environment design, physics-based player movement, procedural level generation, object spawning, collision detection, game-state management, user interface, audio integration, and dynamic difficulty.
+The project demonstrates practical concepts of **3D game development, C# programming, procedural level generation, physics-based movement, collision detection, user-interface management, audio integration, and real-time game-state management**.
 
-🎯 Project Objectives
+---
 
-The major objectives of Royal Run are:
+## 📌 Project Overview
 
-To develop an interactive 3D game using Unity.
-To implement player movement using C# scripting.
-To create an infinite procedurally generated environment.
-To implement obstacle generation and collision detection.
-To develop a scoring and coin collection system.
-To implement a player health/life system.
-To gradually increase game difficulty.
-To provide visual and audio feedback to the player.
-To develop an organized and reusable game architecture.
-To demonstrate practical application of object-oriented programming using C#.
-🎮 Game Concept
+| Category | Details |
+|---|---|
+| 🎮 Project Name | Royal Run |
+| 🕹️ Project Type | 3D Endless Runner |
+| 🛠️ Game Engine | Unity |
+| 💻 Programming Language | C# |
+| 🎨 Render Pipeline | Universal Render Pipeline (URP) |
+| 🎮 Input System | Unity New Input System |
+| 🌍 Environment | Procedurally Generated |
+| 🧩 Architecture | Modular C# Components |
+| 💻 Target Platform | Desktop |
+| 📚 Project Purpose | Academic / Educational / Portfolio |
 
-Royal Run follows the endless runner game concept.
+---
 
-The player starts running through a continuously generated path. Since the level is not completely predefined, new sections of the environment are generated while the player moves forward.
+# 🎯 Project Objective
 
-During the run, the player must:
+The main objective of **Royal Run** is to develop an interactive 3D endless runner game that demonstrates how different game-development systems can work together in real time.
 
-Move left and right.
-Avoid obstacles.
-Collect coins.
-Continue running for as long as possible.
-Maintain the available lives.
-Achieve a high score.
+The project focuses on:
 
-The game continues until the player's available lives are exhausted.
+- Player movement
+- Procedural environment generation
+- Obstacle spawning
+- Coin collection
+- Score management
+- Life management
+- Dynamic difficulty
+- User interface
+- Audio feedback
+- Collision detection
+- Game-state management
 
-⭐ Main Features
-1. Infinite Procedural Generation
+The project also demonstrates how an effectively endless game environment can be created without manually designing the complete track in advance.
 
-One of the major features of Royal Run is its procedural level generation system.
+---
 
-Instead of creating the entire game track manually, the game generates sections or chunks dynamically.
+# 🎮 Gameplay Overview
 
-Player Starts
-     ↓
-Generate Initial Chunks
-     ↓
-Player Moves Forward
-     ↓
-Generate New Chunk
-     ↓
-Remove/Recycle Old Chunk
-     ↓
-Generate Next Chunk
-     ↓
-Continue Infinitely
+In Royal Run, the player continuously runs through an endless environment.
 
-This allows the game to provide an effectively endless running environment.
+The main gameplay loop is:
 
-Advantages
-Reduces the need to manually design a huge level.
-Saves memory by reusing objects.
-Creates variation between runs.
-Makes the game suitable for an endless-runner concept.
-🏃 2. Player Movement
+```text
+Start Game
+    ↓
+Player Begins Running
+    ↓
+Procedurally Generated Track
+    ↓
+Avoid Obstacles
+    ↓
+Collect Coins
+    ↓
+Increase Score
+    ↓
+Speed Gradually Increases
+    ↓
+Continue Running
+    ↓
+Lose All Lives
+    ↓
+Game Over
+```
 
-The player is controlled through a physics-based character controller.
+The main objective is to **survive for as long as possible, collect coins, and achieve a high score**.
 
-The movement system uses Unity's Rigidbody/physics system together with C# scripts.
+---
 
-The player can move horizontally using:
+# ✨ Main Features
 
-Key	Action
-A	Move Left
-D	Move Right
-←	Move Left
-→	Move Right
+## ♾️ Infinite Procedural Generation
 
-The forward movement is continuously maintained by the game.
+The game environment is created using reusable **track chunks**.
 
-🪙 3. Coin Collection System
+Instead of creating one extremely large level manually, the game generates and manages sections of the track during gameplay.
 
-Coins are placed throughout the generated environment.
+This approach provides:
 
-When the player comes into contact with a coin:
+- Continuous gameplay
+- Reusable level sections
+- Reduced requirement for a large fixed level
+- Better replayability
+- Easier level expansion
+- A foundation for more advanced procedural generation
 
-Player
-   ↓
-Collision Detection
-   ↓
-Coin Detected
-   ↓
-Coin Collected
-   ↓
-Coin Counter Increased
-   ↓
-Collection Sound
-   ↓
-Coin Removed
+### Generation Concept
 
-The collected coins are displayed through the game's UI.
+```text
+Player Progress
+      ↓
+Check Available Track
+      ↓
+Generate / Reuse Next Chunk
+      ↓
+Add Obstacles / Coins
+      ↓
+Continue Gameplay
+```
 
-The system provides the player with an additional objective besides simply surviving.
+---
 
-❤️ 4. Health / Life System
+## 🚧 Dynamic Obstacles
 
-The player starts with 3 lives.
+Obstacles are placed throughout the generated track.
+
+The player must move left or right to avoid them.
 
 When the player collides with an obstacle:
 
-Player Hits Obstacle
-        ↓
-    Lose 1 Life
-        ↓
-    Update HUD
-        ↓
-Lives Remaining?
-   ↙          ↘
- YES           NO
- ↓              ↓
-Continue      Game Over
+```text
+Player
+   ↓
+Collision Detected
+   ↓
+Life Reduced
+   ↓
+HUD Updated
+   ↓
+Continue / Game Over
+```
 
-This gives the player multiple opportunities instead of immediately ending the game after one collision.
+Obstacles provide the primary survival challenge of the game.
 
-🚧 5. Obstacle System
+---
 
-Obstacles are generated throughout the running environment.
+## 🪙 Coin Collection
 
-The ObstacleSpawner system is responsible for placing obstacles within generated chunks.
+Coins are collectible objects placed throughout the running environment.
 
-The basic interaction is:
+When the player reaches a coin:
 
-Obstacle Spawned
-       ↓
-Player Approaches
-       ↓
-Collision Detection
-       ↓
-Life Decreased
-       ↓
-Game Continues / Game Over
+1. The coin is collected.
+2. The coin counter increases.
+3. The collection event is processed.
+4. Audio feedback can be triggered.
+5. The HUD reflects the updated coin count.
 
-The obstacle system is an important component of the game's challenge mechanism.
+Coins provide an additional gameplay objective besides simply surviving.
 
-📈 6. Dynamic Difficulty
+---
 
-Royal Run gradually becomes more difficult as the player survives longer.
+## ❤️ Three-Life System
 
-The game increases the running speed over time.
+Royal Run uses a three-life system.
 
-For example:
+The initial state is:
 
-Start
- ↓
+```text
+Lives = 3
+```
+
+When the player hits an obstacle:
+
+```text
+3 Lives
+   ↓
+2 Lives
+   ↓
+1 Life
+   ↓
+0 Lives
+   ↓
+Game Over
+```
+
+The current number of remaining lives is displayed through the game's HUD.
+
+---
+
+## 📈 Score System
+
+The game maintains a score representing the player's gameplay progress.
+
+The score provides a measurable objective and encourages the player to continue running and improve their performance.
+
+The longer the player survives and progresses, the greater the opportunity to achieve a higher score.
+
+---
+
+## ⚡ Dynamic Difficulty
+
+Royal Run gradually increases the running speed as gameplay progresses.
+
+The basic concept is:
+
+```text
+Game Start
+    ↓
 Normal Speed
- ↓
+    ↓
 Player Survives
- ↓
+    ↓
 Speed Increases
- ↓
-Higher Reaction Requirement
- ↓
-More Difficult Gameplay
+    ↓
+Reaction Time Decreases
+    ↓
+Higher Challenge
+```
 
-This prevents the game from remaining at the same difficulty level throughout the entire session.
+This prevents the game from remaining at the same difficulty throughout the entire run.
 
-🏆 7. Score System
+---
 
-The player's score is based primarily on their survival/progress through the level.
+## 🔊 Audio Experience
 
-The longer the player survives and the farther they travel, the higher the score becomes.
+The project includes audio feedback to make gameplay more interactive.
 
-The game therefore encourages the player to continuously improve their previous performance.
+Audio can be used for:
 
-🔊 8. Audio System
+- Background music
+- Coin collection
+- Gameplay events
+- Player feedback
 
-Royal Run includes audio feedback to make the gameplay more interactive.
+Audio feedback helps communicate important gameplay events to the player.
 
-Examples include:
+---
 
-Background music
-Coin collection sound
-Gameplay sound effects
+# 🕹️ Controls
 
-Audio provides immediate feedback when important events occur.
+| Action | Keyboard |
+|---|---|
+| Move Left | `A` |
+| Move Right | `D` |
+| Move Left | `← Left Arrow` |
+| Move Right | `→ Right Arrow` |
+| Exit Game | `Esc` *(if implemented/configured)* |
 
-For example:
+---
 
-Collect Coin
-     ↓
-Coin Sound
-     ↓
-Player receives feedback
-🖥️ 9. User Interface
+# 🏗️ System Architecture
 
-The game provides an in-game HUD to display important information.
+Royal Run follows a modular architecture where different gameplay responsibilities are handled by separate C# components.
 
-Typical information includes:
-
---------------------------------
-          ROYAL RUN
---------------------------------
-
-Score: 1250
-
-Coins: 35
-
-Lives: ❤️ ❤️ ❤️
-
---------------------------------
-
-The UI allows the player to understand their current game status without leaving the gameplay screen.
-
-🛠️ Technology Stack
-Technology	Purpose
-Unity	Game engine
-Unity 2022.3+ / Unity 6	Development environment
-C#	Game programming
-Universal Render Pipeline (URP)	Rendering
-Unity New Input System	Player controls
-Rigidbody / Physics	Player movement and collision
-Unity UI	HUD and game interface
-🏗️ System Architecture
-
-The project follows a modular architecture where different scripts are responsible for different game functions.
-
+```text
                          ROYAL RUN
-                            │
-             ┌──────────────┼──────────────┐
-             │              │              │
-             ▼              ▼              ▼
-       GameManager    LevelGenerator    UIManager
-             │              │              │
-             │              │              │
-             ▼              ▼              ▼
-       Game State       Level Chunks      HUD
-       Score             Obstacles        Score
-       Lives             Coins            Coins
-       Game Over         Generation       Lives
-             │
-             ▼
-       Player Movement
-             │
-             ▼
-       Collision System
-             │
-      ┌──────┴──────┐
-      ▼             ▼
-   Obstacles       Coins
-      │             │
-      ▼             ▼
- Lose Life       Increase Coins
-📂 Project Structure
+                             │
+            ┌────────────────┼────────────────┐
+            │                │                │
+            ▼                ▼                ▼
+      GameManager      LevelGenerator      UIManager
+            │                │                │
+            │                ├── Chunks       ├── Score
+            │                ├── Obstacles    ├── Coins
+            │                └── Coins        └── Lives
+            │
+            ├── Game State
+            ├── Score
+            ├── Lives
+            └── Game Over
+                             │
+                             ▼
+                      Player Movement
+                             │
+                             ▼
+                      Collision System
+                         /          \
+                        /            \
+                       ▼              ▼
+                  Obstacle          Coin
+                       │              │
+                       ▼              ▼
+                   - Life         + Coins
+```
 
-The major scripts are organized inside:
+The modular structure makes the project easier to understand, maintain, debug and extend.
 
-Assets/
-└── Scripts/
-    ├── GameManager.cs
-    ├── LevelGenerator.cs
-    ├── ObstacleSpawner.cs
-    ├── movement.cs
-    └── UIManager.cs
-GameManager.cs
+---
 
-The GameManager acts as the central controller of the game.
+# 🧩 Core Components
 
-It manages important game states such as:
+## `GameManager.cs`
 
-Starting the game
-Score
-Lives
-Game progression
-Game-over state
-Overall gameplay logic
+`GameManager.cs` acts as the central controller for important gameplay logic.
 
-It can be considered the main coordination component of the project.
+### Responsibilities
 
-LevelGenerator.cs
+- Manage the game state
+- Manage score
+- Manage lives
+- Handle game-over conditions
+- Coordinate important gameplay events
 
-The LevelGenerator manages the generation of the endless environment.
+---
 
-Its responsibilities include:
+## `LevelGenerator.cs`
 
-Generating ground sections.
-Creating new chunks.
-Maintaining the running path.
-Reusing/generated sections.
-Supporting the infinite-level concept.
+`LevelGenerator.cs` manages the endless running environment.
 
-This component is one of the most important parts of the project.
+### Responsibilities
 
-ObstacleSpawner.cs
+- Generate track sections
+- Manage reusable chunks
+- Extend the track during gameplay
+- Support continuous player progression
+- Maintain the playable environment ahead of the player
 
-The ObstacleSpawner is responsible for placing obstacles within the generated sections.
+---
 
-It helps make each generated section more challenging by adding obstacles to the player's path.
+## `ObstacleSpawner.cs`
 
-movement.cs
+`ObstacleSpawner.cs` manages obstacle placement.
 
-The movement script controls the player's movement.
+### Responsibilities
 
-It handles:
+- Place obstacles inside generated sections
+- Create gameplay challenges
+- Provide obstacle configurations for the running track
 
-Left movement.
-Right movement.
-Player physics.
-Movement input.
-Interaction with the game environment.
-UIManager.cs
+---
 
-The UIManager controls the information displayed on the screen.
+## `movement.cs`
 
-It is responsible for updating elements such as:
+`movement.cs` controls player movement.
 
+### Responsibilities
+
+- Read player input
+- Handle horizontal movement
+- Control player movement behavior
+- Work with the configured physics system
+
+### Supported Movement
+
+```text
+A / ←  → Move Left
+
+D / →  → Move Right
+```
+
+---
+
+## `UIManager.cs`
+
+`UIManager.cs` manages the game's user interface.
+
+### Responsibilities
+
+- Display score
+- Display coin count
+- Display remaining lives
+- Update gameplay information
+
+The HUD allows the player to understand their current game state during gameplay.
+
+---
+
+# 🗂️ Project Structure
+
+The project follows a standard Unity project structure.
+
+```text
+Royal-run/
+│
+├── Assets/
+│   │
+│   ├── Scenes/
+│   │
+│   ├── Scripts/
+│   │   ├── GameManager.cs
+│   │   ├── LevelGenerator.cs
+│   │   ├── ObstacleSpawner.cs
+│   │   ├── movement.cs
+│   │   └── UIManager.cs
+│   │
+│   ├── Prefabs/
+│   │
+│   ├── Materials/
+│   │
+│   ├── Models/
+│   │
+│   ├── Audio/
+│   │
+│   └── UI/
+│
+├── Packages/
+│
+├── ProjectSettings/
+│
+└── README.md
+```
+
+> The exact folders and additional assets may vary depending on the project version and imported Unity packages.
+
+---
+
+# 🔄 Game Flow
+
+The overall game flow can be represented as:
+
+```text
+                  ┌─────────────┐
+                  │  Start Game │
+                  └──────┬──────┘
+                         ↓
+                  ┌─────────────┐
+                  │ Initialize  │
+                  │ Game State  │
+                  └──────┬──────┘
+                         ↓
+                  ┌─────────────┐
+                  │  Generate   │
+                  │    Track    │
+                  └──────┬──────┘
+                         ↓
+                  ┌─────────────┐
+                  │ Player Runs │
+                  └──────┬──────┘
+                         ↓
+              ┌──────────┴──────────┐
+              ↓                     ↓
+        Collect Coin           Hit Obstacle
+              ↓                     ↓
+       Increase Coins          Lose 1 Life
+              │                     │
+              └──────────┬──────────┘
+                         ↓
+                    Update HUD
+                         ↓
+                Increase Difficulty
+                         ↓
+                Generate Next Chunk
+                         ↓
+                    Lives > 0 ?
+                     /       \
+                   Yes        No
+                    ↓          ↓
+                Continue    Game Over
+```
+
+---
+
+# 🧠 Game Development Concepts
+
+Royal Run demonstrates several important game-development and programming concepts.
+
+## Object-Oriented Programming
+
+C# scripts separate different responsibilities into classes and components.
+
+## Physics
+
+Unity's physics system is used to support movement and interaction between gameplay objects.
+
+## Collision Detection
+
+Collisions connect gameplay objects with actions such as:
+
+- Losing a life
+- Collecting a coin
+- Triggering gameplay events
+
+## Procedural Generation
+
+The environment is created and managed through reusable chunks rather than requiring one fixed endless scene.
+
+## State Management
+
+The game maintains important gameplay values such as:
+
+```text
 Score
 Coins
 Lives
-Game status
+Game State
+Difficulty / Speed
+```
 
-This separates the user interface logic from the core gameplay logic.
+## User Interface
 
-🔄 Overall Game Flow
+The HUD provides immediate information about the player's current progress.
 
-The complete game flow can be represented as:
+## Audio Integration
 
-             START GAME
-                  ↓
-          Initialize Systems
-                  ↓
-         Initialize Player
-                  ↓
-          Generate Chunks
-                  ↓
-          Start Running
-                  ↓
-       ┌──────────┴──────────┐
-       ↓                     ↓
-   Collect Coin         Hit Obstacle
-       ↓                     ↓
- Increase Coins          Lose Life
-       │                     │
-       └──────────┬──────────┘
-                  ↓
-          Continue Running
-                  ↓
-        Increase Difficulty
-                  ↓
-        Generate New Chunk
-                  ↓
-        Check Remaining Lives
-             ↙         ↘
-           YES          NO
-            ↓            ↓
-       Continue       GAME OVER
-🔁 Procedural Generation Flow
+Audio provides feedback for important gameplay events and improves the overall game experience.
 
-The procedural generation system is particularly important for explaining the technical aspect of the project.
+---
 
-       Player Position
-             ↓
-     Check Generation Area
-             ↓
-     Is New Chunk Required?
-          ↙       ↘
-        YES        NO
-         ↓          ↓
- Generate Chunk   Continue
-         ↓
- Spawn Ground
-         ↓
- Spawn Obstacles
-         ↓
- Spawn Coins
-         ↓
- Add Chunk
-         ↓
- Continue Gameplay
-🧩 Important Game Concepts Demonstrated
+# 🎨 Rendering
 
-This project demonstrates several computer science and software development concepts.
+Royal Run uses the:
 
-Object-Oriented Programming
+**Universal Render Pipeline (URP)**
 
-C# classes are used to separate responsibilities between different components.
+URP is Unity's rendering pipeline used to manage the rendering of the 3D environment and game objects.
 
-Examples:
+The project uses Unity's 3D environment to present:
 
-GameManager
-LevelGenerator
-ObstacleSpawner
-UIManager
+- Player
+- Track
+- Obstacles
+- Coins
+- Environment elements
+- UI
+
+---
+
+# 🎮 Unity Input System
+
+The project uses Unity's **New Input System** for player controls.
+
+The input flow is:
+
+```text
+Keyboard Input
+      ↓
+Unity Input System
+      ↓
+Movement Script
+      ↓
 Player Movement
+```
 
-Each component performs a specific role.
+This separates input handling from the actual player movement implementation.
 
-Event-Based Interaction
+---
 
-Gameplay events such as collisions and coin collection trigger specific actions.
+# 🔧 Technologies Used
 
-Physics
+| Technology | Purpose |
+|---|---|
+| Unity | Game engine and development environment |
+| C# | Gameplay programming |
+| Universal Render Pipeline | 3D rendering |
+| Unity New Input System | Player input |
+| Unity Physics | Movement and collision interaction |
+| Unity UI | HUD and gameplay information |
+| Unity Audio | Music and sound effects |
+| Git | Version control |
+| GitHub | Source-code repository |
 
-Unity's physics system is used for player movement and collision detection.
+---
 
-Procedural Generation
+# 💻 System Requirements
 
-The environment is generated dynamically instead of being completely predefined.
+## Development Requirements
 
-Object Reuse
+Recommended requirements include:
 
-Chunks and game objects can be reused to reduce unnecessary creation and destruction.
+- Unity 2022.3 or later
+- C# support through Unity
+- Windows, macOS or Linux development environment
+- Keyboard
+- 8 GB RAM or more recommended for comfortable Unity Editor usage
+- GPU capable of running the configured 3D/URP project
 
-State Management
+> The original project is documented for Unity 2022.3 or later. When opening it with a newer Unity 6 version, Unity may request package or project-data updates.
 
-The game needs to maintain different states such as:
+---
 
-Playing
-   ↓
-Paused / Active
-   ↓
-Game Over
-💻 Controls
-Control	Function
-A	Move Left
-D	Move Right
-Left Arrow	Move Left
-Right Arrow	Move Right
-Esc	Exit, if implemented
-🎮 How to Run the Project
-Step 1 — Open Unity Hub
+# 📥 Installation
 
-Open Unity Hub and select the Royal Run project.
+## Method 1 — Clone the Repository
 
-Step 2 — Open the Project
+Clone the repository using Git:
 
-Use the Unity version compatible with the project.
+```bash
+git clone https://github.com/prayagsahu/Royal-run.git
+```
 
-Step 3 — Open the Game Scene
+Then open the downloaded project folder through Unity Hub.
 
-Navigate to:
+---
 
-Assets
-   ↓
-Scenes
-   ↓
-Main Game Scene
+## Method 2 — Download ZIP
 
-Open the appropriate .unity scene.
+1. Open the GitHub repository.
+2. Click **Code**.
+3. Select **Download ZIP**.
+4. Extract the ZIP file.
+5. Open **Unity Hub**.
+6. Select **Add → Add project from disk**.
+7. Select the extracted `Royal-run` folder.
+8. Open the project using a compatible Unity version.
 
-Step 4 — Run
+---
+
+# ▶️ How to Run the Game
+
+After opening the project in Unity:
+
+### Step 1 — Wait for Import
+
+Allow Unity to finish importing assets and packages.
+
+### Step 2 — Open the Gameplay Scene
+
+Open the appropriate gameplay scene from:
+
+```text
+Assets → Scenes
+```
+
+### Step 3 — Check the Console
+
+Make sure there are no compilation errors.
+
+### Step 4 — Enter Play Mode
 
 Press:
 
+```text
 ▶ Play
+```
 
-The game should start inside the Unity Editor.
+### Step 5 — Control the Player
 
-🧪 Testing
+Use:
 
-The project can be tested using the following cases:
+```text
+A / ←  = Move Left
 
-Test Case	Expected Result
-Start game	Player begins running
-Press A	Player moves left
-Press D	Player moves right
-Collect coin	Coin count increases
-Hit obstacle	One life is lost
-Continue running	New environment sections appear
-Survive longer	Score increases
-Lose all lives	Game Over occurs
-Audio event	Appropriate sound is played
-🎓 Academic Significance
+D / →  = Move Right
+```
 
-Royal Run demonstrates how theoretical programming concepts can be applied to an interactive software system.
+### Step 6 — Test the Gameplay
 
-The project combines:
+Verify:
 
-C# programming
-Object-oriented programming
-Game development
-Physics simulation
-Procedural generation
-Collision detection
-User interface development
-Input handling
-Audio integration
-Real-time system management
+- Player movement
+- Track generation
+- Obstacles
+- Coins
+- Score
+- Lives
+- Difficulty progression
+- Audio
+- Game-over behavior
 
-Therefore, the project is not only a game but also an example of integrating multiple software engineering and programming concepts into a single interactive application.
+---
 
-🚀 Possible Future Enhancements
+# 🧪 Testing
 
-The project can be extended with additional features such as:
+The major gameplay functions should be tested before project presentation.
 
-Multiple playable characters.
-Character customization.
-Different environments.
-Power-ups.
-Daily challenges.
-High-score leaderboard.
-Save/load player progress.
-Multiple difficulty modes.
-Additional obstacle types.
-More advanced animations.
-Mobile touch controls.
-Online leaderboard.
-Achievement system.
-👨‍🏫 Short Faculty Presentation Explanation
+| Test ID | Test Case | Expected Result |
+|---|---|---|
+| TC-01 | Start Game | Game initializes successfully |
+| TC-02 | Press `A` | Player moves left |
+| TC-03 | Press `D` | Player moves right |
+| TC-04 | Press `←` | Player moves left |
+| TC-05 | Press `→` | Player moves right |
+| TC-06 | Collect Coin | Coin count increases |
+| TC-07 | Hit Obstacle | One life is removed |
+| TC-08 | Continue Running | New track sections become available |
+| TC-09 | Continue Playing | Score increases |
+| TC-10 | Survive Longer | Running speed increases |
+| TC-11 | Lose All Lives | Game-over condition occurs |
+| TC-12 | Audio Event | Configured audio feedback plays |
+| TC-13 | HUD Update | Score, coins and lives update correctly |
 
-If your faculty asks:
+---
 
-"Explain your project."
+# 🐛 Troubleshooting
 
-You can say:
+## Game Scene Appears Empty
 
-Royal Run is a 3D endless runner game developed using Unity and C#. The main objective is to allow the player to continuously run through a procedurally generated environment while avoiding obstacles and collecting coins. The game uses a dynamic level-generation system to create new chunks during gameplay, making the environment effectively endless.
+Make sure you have opened the correct gameplay scene instead of an empty `Untitled` scene.
 
-The project is divided into several modules, including GameManager for controlling the overall game state, LevelGenerator for generating the environment, ObstacleSpawner for placing obstacles, a movement controller for player interaction, and UIManager for displaying score, coins, and lives.
+Check:
 
-The game also implements collision detection, a three-life health system, dynamic difficulty, scoring, coin collection, audio feedback, and a user interface. The project demonstrates practical implementation of C# programming, object-oriented design, Unity physics, procedural generation, and real-time game-state management.
+```text
+Assets
+   └── Scenes
+        └── Gameplay Scene
+```
 
-🎤 Important Questions Faculty May Ask
-1. Why did you choose Unity?
+Open the correct scene and press **Play**.
 
-Answer:
+---
 
-Unity provides an integrated environment for 3D game development and supports C# scripting, physics, animation, UI, audio, and rendering. It also provides tools that simplify the development and testing of interactive applications.
+## Player Does Not Move
 
-2. Why did you use C#?
+Check:
 
-C# is Unity's primary scripting language and supports object-oriented programming, which makes it suitable for organizing different game components into separate classes.
+- Input System configuration
+- Movement script
+- Player object
+- Rigidbody configuration
+- Input bindings
+- Console errors
 
-3. What is procedural generation?
+---
 
-Procedural generation is the technique of creating game content algorithmically rather than manually creating every part of the environment.
+## Track Does Not Generate
 
-4. Why use procedural generation?
+Check:
 
-It allows the game to continuously generate new sections of the environment and reduces the requirement to manually create an extremely large level.
+- `LevelGenerator`
+- Chunk references
+- Prefab references
+- Scene references
+- Unity Console errors
 
-5. What is the role of GameManager?
+---
 
-GameManager acts as a central controller for important gameplay operations such as score, lives, game states, and game-over management.
+## Coins Do Not Update
 
-6. What happens when the player hits an obstacle?
+Check:
 
-Collision detection identifies the interaction between the player and obstacle, after which the player's life count is reduced. If no lives remain, the game enters the Game Over state.
+- Coin Collider
+- Player Collider
+- Trigger settings
+- Coin collection logic
+- UIManager reference
 
-7. How does the game become more difficult?
+---
 
-The game gradually increases the running speed as the player progresses, which increases the reaction requirement and overall difficulty.
+## Lives Do Not Decrease
 
-8. What is URP?
+Check:
 
-URP stands for Universal Render Pipeline. It is Unity's rendering pipeline designed to provide optimized and scalable graphics across different platforms.
+- Player Collider
+- Obstacle Collider
+- Rigidbody configuration
+- Collision/Trigger settings
+- GameManager reference
 
-9. What is the purpose of the UIManager?
+---
 
-UIManager is responsible for updating the information presented to the player, such as score, coins, and remaining lives.
+## Console Shows Errors
 
-10. What makes the project technically interesting?
+Open:
 
-The main technical feature is the combination of procedural level generation, real-time gameplay management, physics-based movement, collision detection, dynamic difficulty, and UI/audio systems within a single application.
+```text
+Window → General → Console
+```
 
+Fix compilation errors before testing gameplay.
+
+---
+
+# 📊 Performance Considerations
+
+Procedural generation can create many runtime objects if the environment is not managed efficiently.
+
+Possible performance improvements include:
+
+- Reusing chunks
+- Limiting the number of active chunks
+- Removing or recycling chunks behind the player
+- Reusing obstacles and collectibles
+- Reducing unnecessary object creation
+- Using object pooling for frequently created objects
+- Optimizing large or complex assets
+
+These improvements become increasingly important as the project grows.
+
+---
+
+# 🚀 Future Enhancements
+
+The current project provides a foundation for additional gameplay and technical features.
+
+## 🎭 Character Selection
+
+Allow the player to select from multiple playable characters.
+
+## 🎨 Character Customization
+
+Add customizable appearances and unlockable cosmetic items.
+
+## ⚡ Power-Ups
+
+Introduce temporary gameplay abilities.
+
+Possible examples:
+
+- Temporary protection
+- Coin attraction
+- Temporary speed effects
+
+## 🌍 Multiple Environments
+
+Add different visual environments such as:
+
+- City
+- Forest
+- Desert
+- Snow
+- Futuristic environment
+
+## 🏆 High Score System
+
+Store and display the player's highest score between game sessions.
+
+## 🌐 Online Leaderboard
+
+Add a backend service for storing and comparing player scores.
+
+## 📱 Mobile Support
+
+Add touch and swipe controls for Android and iOS.
+
+## 🏅 Achievement System
+
+Introduce achievements based on:
+
+- Distance
+- Coins collected
+- Survival time
+- Score
+- Gameplay milestones
+
+## 🎵 Advanced Audio
+
+Expand the audio system with:
+
+- Multiple background tracks
+- Additional sound effects
+- Dynamic music
+- Volume controls
+- Audio settings
+
+---
+
+# 📚 Learning Outcomes
+
+The project provides practical experience with:
+
+- Unity Editor workflow
+- C# programming
+- Object-oriented programming
+- 3D game development
+- Unity physics
+- Collision detection
+- Procedural generation
+- Runtime object management
+- Input handling
+- UI development
+- Audio integration
+- Game-state management
+- Debugging
+- Testing
+- Git and GitHub
+
+---
+
+# 🎓 Academic Relevance
+
+Royal Run is suitable as an academic Game Programming project because it combines several programming and game-development concepts into one working application.
+
+The project demonstrates the relationship between:
+
+```text
+C# Programming
+       +
+Unity Engine
+       +
+Physics
+       +
+Input System
+       +
+Procedural Generation
+       +
+User Interface
+       +
+Audio
+       +
+Game State
+       ↓
+Interactive 3D Game
+```
+
+The project can therefore be used to demonstrate both programming knowledge and practical real-time application development during a project presentation or viva.
+
+---
+
+# 📸 Screenshots
+
+Add screenshots of the actual working project to make the repository more professional.
+
+Recommended screenshots:
+
+1. Main gameplay screen
+2. Player running on the track
+3. Coin collection
+4. Obstacle section
+5. HUD showing score, coins and lives
+6. Game-over screen
+7. Unity Hierarchy
+8. Unity Project/Assets structure
+9. Important C# scripts
+10. Procedurally generated track
+
+Example structure:
+
+```text
+Screenshots/
+├── gameplay.png
+├── hud.png
+├── coins.png
+├── obstacles.png
+├── game-over.png
+└── unity-editor.png
+```
+
+Example Markdown:
+
+```markdown
+## 📸 Screenshots
+
+### Main Gameplay
+
+![Royal Run Gameplay](Screenshots/gameplay.png)
+
+### HUD
+
+![Royal Run HUD](Screenshots/hud.png)
+
+### Game Over
+
+![Royal Run Game Over](Screenshots/game-over.png)
+```
+
+---
+
+# 📁 Recommended Repository Structure
+
+A clean repository can be organized as follows:
+
+```text
+Royal-run/
+│
+├── Assets/
+│
+├── Packages/
+│
+├── ProjectSettings/
+│
+├── Screenshots/
+│   ├── gameplay.png
+│   ├── hud.png
+│   ├── coins.png
+│   ├── obstacles.png
+│   └── game-over.png
+│
+├── Documentation/
+│   └── Royal_Run_Project_Documentation.pdf
+│
+├── README.md
+│
+└── .gitignore
+```
+
+---
+
+# 🔐 Git and GitHub
+
+Before pushing the project to GitHub, unnecessary Unity-generated folders should normally be excluded.
+
+Typical folders that should not be committed include:
+
+```text
+Library/
+Temp/
+Logs/
+Obj/
+Build/
+Builds/
+UserSettings/
+```
+
+Use an appropriate Unity `.gitignore` file to prevent unnecessary generated files from being uploaded.
+
+---
+
+# 📌 Project Information
+
+| Field | Information |
+|---|---|
+| Project Name | Royal Run |
+| Project Type | 3D Endless Runner |
+| Engine | Unity |
+| Programming Language | C# |
+| Rendering | Universal Render Pipeline |
+| Input | Unity New Input System |
+| Main Concept | Procedurally Generated Endless Track |
+| Development Focus | Game Programming |
+| Target Platform | Desktop |
+| Project Purpose | Academic / Educational / Portfolio |
+
+---
+
+# 👨‍💻 Author
+
+**Lihuo Hor**
+
+Computer Science Student  
+University of Mumbai
+
+
+# 📄 Project Documentation
+
+The project can be supported by separate academic documentation covering:
+
+- Introduction
+- Background
+- Problem Statement
+- Objectives
+- Scope
+- Requirements Analysis
+- System Design
+- System Architecture
+- Game Flow
+- Implementation
+- Testing
+- Results
+- Limitations
+- Future Enhancements
+- Conclusion
+- References
+- Viva Preparation
+
+---
+
+# 🏁 Conclusion
+
+**Royal Run** is a 3D endless runner game that combines **Unity and C#** to create an interactive and continuously playable environment.
+
+The project demonstrates:
+
+- Procedural track generation
+- Player movement
+- Obstacle interaction
+- Coin collection
+- Score tracking
+- Life management
+- Dynamic difficulty
+- User-interface management
+- Audio feedback
+- Collision detection
+- Real-time game-state management
+
+The modular architecture provides a foundation for future development. Additional environments, power-ups, character customization, achievements, mobile controls, persistent scores and online features can be added as the project evolves.
+
+---
+
+# ⭐ Project Highlights
+
+```text
+👑 Royal Run
+│
+├── 🎮 3D Endless Runner
+├── ♾️ Procedural Track Generation
+├── 🚧 Dynamic Obstacles
+├── 🪙 Coin Collection
+├── ❤️ Three-Life System
+├── 📈 Score System
+├── ⚡ Dynamic Difficulty
+├── 🔊 Audio Feedback
+├── 🖥️ HUD
+├── 🎨 Unity URP
+├── 💻 C# Programming
+├── 🎮 New Input System
+└── 🧩 Modular Architecture
+```
+
+---
+
+## 👑 Royal Run
+
+**Run Further. Collect More. Survive Longer.**
